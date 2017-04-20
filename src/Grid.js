@@ -11,6 +11,14 @@
     this.table[fieldLocation.row][fieldLocation.col] = player.name;
   };
 
+  Grid.prototype.hasPlayerClaimedRow = function (player, row) {
+     allCalimed = this.table[row].every(function(field){
+      return field === player.name;
+    });
+
+    return allCalimed;
+  };
+
 
   Grid.prototype.isFieldClaimed = function (fieldLocation) {
     this._checkFieldLocation(fieldLocation);
