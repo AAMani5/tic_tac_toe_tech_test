@@ -18,7 +18,6 @@
   Game.prototype.isWon = function () {
     var won = this.grid.hasPlayerClaimedRow(this.currentPlayer) || this.grid.hasPlayerClaimedColumn(this.currentPlayer) || this.grid.hasPlayerClaimedDiagonal(this.currentPlayer) ||
       this.grid.hasPlayerClaimedRow(this.opponentPlayer) || this.grid.hasPlayerClaimedColumn(this.opponentPlayer) || this.grid.hasPlayerClaimedDiagonal(this.opponentPlayer);
-      console.log(this.grid.hasPlayerClaimedDiagonal(this.currentPlayer));
     return won;
   };
 
@@ -38,13 +37,10 @@
 
   Game.prototype._switchPlayers = function () {
     this.currentPlayer = this.currentPlayer === this.players[0] ? this.players[1] : this.players[0];
-    console.log(this.currentPlayer);
-    console.log(this.players);
   };
 
   Game.prototype._checksToProceed = function (player, fieldLocation) {
     var proceed = (this.currentPlayer === player) && (!this.isWon()) && (!this.isOver()) && (!this.grid.isFieldClaimed(fieldLocation));
-    console.log(!this.isWon());
     return proceed;
   };
 

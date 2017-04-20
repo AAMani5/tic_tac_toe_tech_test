@@ -1,10 +1,10 @@
-describe("Game", function() {
+describe("Feature Tests", function() {
   var player1 = new Player('X');
   var player2 = new Player('O');
   var grid = new Grid({rows:3, columns:3});
   var game = new Game(player1, player2, grid);
 
-  it("", function(){
+  it("Game knoes when a game is over, with no winner", function(){
     game.play(player1,{row:0, col:0});
     game.play(player2,{row:0, col:1});
     game.play(player1,{row:0, col:2});
