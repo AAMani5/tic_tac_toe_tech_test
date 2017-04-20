@@ -51,5 +51,20 @@ describe("Grid", function() {
 
   });
 
+  describe("#hasPlayerClaimedDiagonal", function() {
+
+    it("returns false if player has not claimed the whole diagonal", function() {
+      expect(grid.hasPlayerClaimedDiagonal({name: 'X'})).toBe(false);
+    });
+
+    it("returns true if player claimed the whole diagonal", function() {
+      grid.claimField({name: 'X'}, {row:0, col:0});
+      grid.claimField({name: 'X'}, {row:1, col:1});
+      grid.claimField({name: 'X'}, {row:2, col:2});
+      expect(grid.hasPlayerClaimedDiagonal({name: 'X'})).toBe(true);
+    });
+
+  });
+
 
 });

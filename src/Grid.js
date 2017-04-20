@@ -27,6 +27,13 @@
     return rowsCalimed.includes(true);
   };
 
+  Grid.prototype.hasPlayerClaimedDiagonal = function (player) {
+    var diaClaimed = (this.table[0][0] === player.name && this.table[1][1] === player.name && this.table[2][2] === player.name) ||
+    (this.table[2][0] === player.name && this.table[1][1] === player.name && this.table[0][2] === player.name);
+
+    return diaClaimed;
+  };
+
 
   Grid.prototype.isFieldClaimed = function (fieldLocation) {
     this._checkFieldLocation(fieldLocation);
