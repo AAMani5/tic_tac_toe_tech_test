@@ -12,4 +12,8 @@ describe("Grid", function() {
     expect(grid.areAllFieldsCalimed()).toBe(false);
   });
 
+  it("#isFieldCalimed", function() {
+    expect(grid.isFieldClaimed({row:1, col:2})).toBe(true);
+  });
+
 });
