@@ -34,7 +34,7 @@ describe("Game", function(){
 
   it("switches players after a player has claimed a field", function(){
     game.play(player1, {row:1, col:2});
-    expect(function(){game.play(player1, {row:1, col:2})}).toThrow();
+    expect(function(){game.play(player1, {row:1, col:2});}).toThrow();
   });
 
 

@@ -41,7 +41,8 @@
   };
 
   Game.prototype._checksToProceed = function (player, fieldLocation) {
-    return this.currentPlayer === player || !this.isWon() || !this.isOver() || this.grid.isFieldClaimed();
+    var proceed = (this.currentPlayer === player) && (!this.isWon()) && (!this.isOver()) && (!this.grid.isFieldClaimed(fieldLocation));
+    return proceed;
   };
 
   exports.Game = Game;
