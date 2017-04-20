@@ -22,8 +22,26 @@
   };
 
   Game.prototype.isOver = function () {
-    var over = this.grid.areAllFieldsCalimed()
+    var over = this.grid.areAllFieldsCalimed();
     return over;
+  };
+
+  Game.prototype.play = function (player, fieldLocation) {
+    if(this._checksToProceed(player, fieldLocation)){
+      this.grid.claimField(player, fieldLocation);
+      this._switchPlayers();
+    }else {
+      throw new Error('Invalid Move: game over or not players turn or field claimed');
+    }
+  };
+
+  Game.prototype._switchPlayers = function () {
+    this.currentPlayer = this.opponentPlayer;
+    this.opponentPlayer = this.players.filter(function(player){return player != this.currentPlayer;});
+  };
+
+  Game.prototype._checksToProceed = function (player, fieldLocation) {
+    return this.currentPlayer === player || !this.isWon() || !this.isOver() || this.grid.isFieldClaimed();
   };
 
   exports.Game = Game;

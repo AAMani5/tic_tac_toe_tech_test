@@ -1,5 +1,5 @@
 describe("Game", function(){
-  var player1, player2, game, grid
+  var player1, player2, game, grid;
 
   beforeEach(function(){
     player1 = {name: 'X'};
@@ -27,5 +27,15 @@ describe("Game", function(){
   it("#isOver", function(){
     expect(game.isOver()).toBe(false);
   });
+
+  it("#play", function(){
+    expect(function(){game.play(player1, {row:1, col:2});}).not.toThrow();
+  });
+
+  it("switches players after a player has claimed a field", function(){
+    game.play(player1, {row:1, col:2});
+    expect(function(){game.play(player1, {row:1, col:2})}).toThrow();
+  });
+
 
 });
