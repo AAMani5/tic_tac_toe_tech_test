@@ -6,11 +6,15 @@
     this.table = this._createTable(dimensions);
   }
 
+  Grid.prototype.claimField = function (player, fieldLocation) {
+    this._checkFieldLocation(fieldLocation);
+    this.table[fieldLocation.row][fieldLocation.col] = player.name;
+  };
+
+
   Grid.prototype.isFieldClaimed = function (fieldLocation) {
-    if (fieldLocation.row >= this.rows || fieldLocation.col >= this.columns) {
-      throw new Error('Field must be within the grid, Please check row and column number');
-    }
-    return this.table[fieldLocation.row][fieldLocation.col] === " ";
+    this._checkFieldLocation(fieldLocation);
+    return this.table[fieldLocation.row][fieldLocation.col] !== " ";
   };
 
   Grid.prototype.areAllFieldsCalimed = function () {
@@ -36,6 +40,12 @@
     }
 
     return table;
+  };
+
+  Grid.prototype._checkFieldLocation = function (fieldLocation) {
+    if (fieldLocation.row >= this.rows || fieldLocation.col >= this.columns) {
+      throw new Error('Field must be within the grid, Please check row and column number');
+    }
   };
 
 exports.Grid = Grid;
