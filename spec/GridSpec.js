@@ -24,14 +24,29 @@ describe("Grid", function() {
   describe("#hasPlayerClaimedRow", function() {
 
     it("returns false if player has not claimed the whole row", function() {
-      expect(grid.hasPlayerClaimedRow({name: 'X'}, 0)).toBe(false);
+      expect(grid.hasPlayerClaimedRow({name: 'X'})).toBe(false);
     });
 
     it("returns true if player claimed the whole row", function() {
       grid.claimField({name: 'X'}, {row:0, col:0});
       grid.claimField({name: 'X'}, {row:0, col:1});
       grid.claimField({name: 'X'}, {row:0, col:2});
-      expect(grid.hasPlayerClaimedRow({name: 'X'}, 0)).toBe(true);
+      expect(grid.hasPlayerClaimedRow({name: 'X'})).toBe(true);
+    });
+
+  });
+
+  describe("#hasPlayerClaimedColumn", function() {
+
+    it("returns false if player has not claimed the whole column", function() {
+      expect(grid.hasPlayerClaimedColumn({name: 'X'})).toBe(false);
+    });
+
+    it("returns true if player claimed the whole column", function() {
+      grid.claimField({name: 'X'}, {row:0, col:0});
+      grid.claimField({name: 'X'}, {row:1, col:0});
+      grid.claimField({name: 'X'}, {row:2, col:0});
+      expect(grid.hasPlayerClaimedColumn({name: 'X'})).toBe(true);
     });
 
   });
