@@ -36,7 +36,13 @@
   };
 
   Game.prototype._switchPlayers = function () {
-    this.currentPlayer = this.currentPlayer === this.players[0] ? this.players[1] : this.players[0];
+    if (this.currentPlayer === this.players[0]) {
+      this.currentPlayer = this.players[1];
+      this.opponentPlayer = this.players[0];
+    } else {
+      this.currentPlayer = this.players[0];
+      this.opponentPlayer = this.players[1];
+    }
   };
 
   Game.prototype._checksToProceed = function (player, fieldLocation) {
