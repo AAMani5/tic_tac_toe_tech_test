@@ -19,10 +19,10 @@
   };
 
   Grid.prototype.hasPlayerClaimedRow = function (player) {
-     var rowsCalimed = (this.table[0][0] === player.name && this.table[0][1] === player.name && this.table[0][2] === player.name) ||
-     (this.table[1][0] === player.name && this.table[1][1] === player.name && this.table[1][2] === player.name) ||
-     (this.table[2][0] === player.name && this.table[2][1] === player.name && this.table[2][2] === player.name);
-    return rowsCalimed;
+    var rowsCalimed = this.table.map(function(row){
+      return row.every(function(field){return field === player.name;});
+    });
+    return rowsCalimed.includes(true);
   };
 
   Grid.prototype.hasPlayerClaimedDiagonal = function (player) {
