@@ -13,7 +13,7 @@
 
   Grid.prototype.hasPlayerClaimedColumn = function (player) {
     var transpoedArray = this._transposeArray(this.table);
-    var columnsClaimed = this._checkEachRow(transpoedArray, player)
+    var columnsClaimed = this._checkEachRow(transpoedArray, player);
     return columnsClaimed.includes(true);
   };
 
@@ -23,10 +23,9 @@
   };
 
   Grid.prototype.hasPlayerClaimedDiagonal = function (player) {
-    var diaClaimed = (this.table[0][0] === player.name && this.table[1][1] === player.name && this.table[2][2] === player.name) ||
-    (this.table[2][0] === player.name && this.table[1][1] === player.name && this.table[0][2] === player.name);
-
-    return diaClaimed;
+    var diagonalArray = this._getDiagonalElements(this.table);
+    var diaClaimed = this._checkEachRow(diagonalArray, player);
+    return diaClaimed.includes(true);
   };
 
 
@@ -76,6 +75,22 @@
     return array.map(function(row){
       return row.every(function(field){return field === player.name;});
     });
+  };
+
+  Grid.prototype._getDiagonalElements = function (array) {
+    var ldiagonal = [];
+    var rdiagonal = [];
+    for(var i = 0; i < array.length; i++){
+      for(var j = 0; j < array.length; j++){
+        if(i === j){
+          ldiagonal.push(array[i][j]);
+        }
+        if (i+j === array.length - 1){
+          rdiagonal.push(array[i][j]);
+        }
+      }
+    }
+    return [ldiagonal, rdiagonal];
   };
 
 exports.Grid = Grid;
